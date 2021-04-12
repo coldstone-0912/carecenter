@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.group1.carecenter.mapper.RecordMapper" >
+  <resultMap id="BaseResultMap" type="com.group1.carecenter.entity.Record" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="nurseid" property="nurseid" jdbcType="INTEGER" />
+    <result column="clientid" property="clientid" jdbcType="INTEGER" />
+    <result column="starttime" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="project" property="project" jdbcType="VARCHAR" />
+    <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, nurseid, clientid, starttime, project, endtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from nurserecord
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from nurserecord
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.group1.carecenter.entity.Record" >
+    insert into nurserecord (id, nurseid, clientid, 
+      starttime, project, endtime
+      )
+    values (#{id,jdbcType=INTEGER}, #{nurseid,jdbcType=INTEGER}, #{clientid,jdbcType=INTEGER}, 
+      #{starttime,jdbcType=TIMESTAMP}, #{project,jdbcType=VARCHAR}, #{endtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.group1.carecenter.entity.Record" >
+    insert into nurserecord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="nurseid != null" >
+        nurseid,
+      </if>
+      <if test="clientid != null" >
+        clientid,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="project != null" >
+        project,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nurseid != null" >
+        #{nurseid,jdbcType=INTEGER},
+      </if>
+      <if test="clientid != null" >
+        #{clientid,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="project != null" >
+        #{project,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.group1.carecenter.entity.Record" >
+    update nurserecord
+    <set >
+      <if test="nurseid != null" >
+        nurseid = #{nurseid,jdbcType=INTEGER},
+      </if>
+      <if test="clientid != null" >
+        clientid = #{clientid,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        starttime = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="project != null" >
+        project = #{project,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.group1.carecenter.entity.Record" >
+    update nurserecord
+    set nurseid = #{nurseid,jdbcType=INTEGER},
+      clientid = #{clientid,jdbcType=INTEGER},
+      starttime = #{starttime,jdbcType=TIMESTAMP},
+      project = #{project,jdbcType=VARCHAR},
+      endtime = #{endtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.group1.carecenter.mapper.UserLeaveMapper" >
+  <resultMap id="BaseResultMap" type="com.group1.carecenter.entity.UserLeave" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="clientid" property="clientid" jdbcType="INTEGER" />
+    <result column="leavetime" property="leavetime" jdbcType="TIMESTAMP" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="escortman" property="escortman" jdbcType="VARCHAR" />
+    <result column="escortphone" property="escortphone" jdbcType="VARCHAR" />
+    <result column="returntime" property="returntime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, clientid, leavetime, reason, escortman, escortphone, returntime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from userleave
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userleave
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.group1.carecenter.entity.UserLeave" >
+    insert into userleave (id, clientid, leavetime, 
+      reason, escortman, escortphone, 
+      returntime)
+    values (#{id,jdbcType=INTEGER}, #{clientid,jdbcType=INTEGER}, #{leavetime,jdbcType=TIMESTAMP}, 
+      #{reason,jdbcType=VARCHAR}, #{escortman,jdbcType=VARCHAR}, #{escortphone,jdbcType=VARCHAR}, 
+      #{returntime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.group1.carecenter.entity.UserLeave" >
+    insert into userleave
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="clientid != null" >
+        clientid,
+      </if>
+      <if test="leavetime != null" >
+        leavetime,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="escortman != null" >
+        escortman,
+      </if>
+      <if test="escortphone != null" >
+        escortphone,
+      </if>
+      <if test="returntime != null" >
+        returntime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="clientid != null" >
+        #{clientid,jdbcType=INTEGER},
+      </if>
+      <if test="leavetime != null" >
+        #{leavetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="escortman != null" >
+        #{escortman,jdbcType=VARCHAR},
+      </if>
+      <if test="escortphone != null" >
+        #{escortphone,jdbcType=VARCHAR},
+      </if>
+      <if test="returntime != null" >
+        #{returntime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.group1.carecenter.entity.UserLeave" >
+    update userleave
+    <set >
+      <if test="clientid != null" >
+        clientid = #{clientid,jdbcType=INTEGER},
+      </if>
+      <if test="leavetime != null" >
+        leavetime = #{leavetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="escortman != null" >
+        escortman = #{escortman,jdbcType=VARCHAR},
+      </if>
+      <if test="escortphone != null" >
+        escortphone = #{escortphone,jdbcType=VARCHAR},
+      </if>
+      <if test="returntime != null" >
+        returntime = #{returntime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.group1.carecenter.entity.UserLeave" >
+    update userleave
+    set clientid = #{clientid,jdbcType=INTEGER},
+      leavetime = #{leavetime,jdbcType=TIMESTAMP},
+      reason = #{reason,jdbcType=VARCHAR},
+      escortman = #{escortman,jdbcType=VARCHAR},
+      escortphone = #{escortphone,jdbcType=VARCHAR},
+      returntime = #{returntime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

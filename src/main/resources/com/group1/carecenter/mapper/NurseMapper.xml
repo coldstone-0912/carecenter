@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.group1.carecenter.mapper.NurseMapper" >
+  <resultMap id="BaseResultMap" type="com.group1.carecenter.entity.Nurse" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="nurseid" property="nurseid" jdbcType="INTEGER" />
+    <result column="nursename" property="nursename" jdbcType="VARCHAR" />
+    <result column="nurserank" property="nurserank" jdbcType="INTEGER" />
+    <result column="phonenumber" property="phonenumber" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, nurseid, nursename, nurserank, phonenumber
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from nurses
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from nurses
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.group1.carecenter.entity.Nurse" >
+    insert into nurses (id, nurseid, nursename, 
+      nurserank, phonenumber)
+    values (#{id,jdbcType=INTEGER}, #{nurseid,jdbcType=INTEGER}, #{nursename,jdbcType=VARCHAR}, 
+      #{nurserank,jdbcType=INTEGER}, #{phonenumber,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.group1.carecenter.entity.Nurse" >
+    insert into nurses
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="nurseid != null" >
+        nurseid,
+      </if>
+      <if test="nursename != null" >
+        nursename,
+      </if>
+      <if test="nurserank != null" >
+        nurserank,
+      </if>
+      <if test="phonenumber != null" >
+        phonenumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nurseid != null" >
+        #{nurseid,jdbcType=INTEGER},
+      </if>
+      <if test="nursename != null" >
+        #{nursename,jdbcType=VARCHAR},
+      </if>
+      <if test="nurserank != null" >
+        #{nurserank,jdbcType=INTEGER},
+      </if>
+      <if test="phonenumber != null" >
+        #{phonenumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.group1.carecenter.entity.Nurse" >
+    update nurses
+    <set >
+      <if test="nurseid != null" >
+        nurseid = #{nurseid,jdbcType=INTEGER},
+      </if>
+      <if test="nursename != null" >
+        nursename = #{nursename,jdbcType=VARCHAR},
+      </if>
+      <if test="nurserank != null" >
+        nurserank = #{nurserank,jdbcType=INTEGER},
+      </if>
+      <if test="phonenumber != null" >
+        phonenumber = #{phonenumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.group1.carecenter.entity.Nurse" >
+    update nurses
+    set nurseid = #{nurseid,jdbcType=INTEGER},
+      nursename = #{nursename,jdbcType=VARCHAR},
+      nurserank = #{nurserank,jdbcType=INTEGER},
+      phonenumber = #{phonenumber,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

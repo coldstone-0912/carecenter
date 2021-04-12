@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group1.carecenter.mapper.AccountMapper">
+  <resultMap id="BaseResultMap" type="com.group1.carecenter.entity.Account">
+    <result column="USER" jdbcType="CHAR" property="user" />
+    <result column="CURRENT_CONNECTIONS" jdbcType="BIGINT" property="currentConnections" />
+    <result column="TOTAL_CONNECTIONS" jdbcType="BIGINT" property="totalConnections" />
+  </resultMap>
+  <insert id="insert" parameterType="com.group1.carecenter.entity.Account">
+    insert into users (USER, CURRENT_CONNECTIONS, TOTAL_CONNECTIONS
+      )
+    values (#{user,jdbcType=CHAR}, #{currentConnections,jdbcType=BIGINT}, #{totalConnections,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.group1.carecenter.entity.Account">
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="user != null">
+        USER,
+      </if>
+      <if test="currentConnections != null">
+        CURRENT_CONNECTIONS,
+      </if>
+      <if test="totalConnections != null">
+        TOTAL_CONNECTIONS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="user != null">
+        #{user,jdbcType=CHAR},
+      </if>
+      <if test="currentConnections != null">
+        #{currentConnections,jdbcType=BIGINT},
+      </if>
+      <if test="totalConnections != null">
+        #{totalConnections,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.group1.carecenter.entity.Account">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="clientid" jdbcType="INTEGER" property="clientid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="userpassword" jdbcType="VARCHAR" property="userpassword" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, clientid, username, userpassword
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from users
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.group1.carecenter.entity.Account">
+    insert into users (id, clientid, username, 
+      userpassword)
+    values (#{id,jdbcType=INTEGER}, #{clientid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{userpassword,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.group1.carecenter.entity.Account">
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="clientid != null">
+        clientid,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="userpassword != null">
+        userpassword,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="clientid != null">
+        #{clientid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpassword != null">
+        #{userpassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.group1.carecenter.entity.Account">
+    update users
+    <set>
+      <if test="clientid != null">
+        clientid = #{clientid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpassword != null">
+        userpassword = #{userpassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.group1.carecenter.entity.Account">
+    update users
+    set clientid = #{clientid,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      userpassword = #{userpassword,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

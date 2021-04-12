@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.group1.carecenter.mapper.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.group1.carecenter.entity.Menu" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="calories" property="calories" jdbcType="DOUBLE" />
+    <result column="protein" property="protein" jdbcType="DOUBLE" />
+    <result column="fat" property="fat" jdbcType="DOUBLE" />
+    <result column="cholesterol" property="cholesterol" jdbcType="DOUBLE" />
+    <result column="carbohydrate" property="carbohydrate" jdbcType="DOUBLE" />
+    <result column="DT" property="dt" jdbcType="DOUBLE" />
+    <result column="na" property="na" jdbcType="DOUBLE" />
+    <result column="remark" property="remark" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, calories, protein, fat, cholesterol, carbohydrate, DT, na, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.group1.carecenter.entity.Menu" >
+    insert into menu (id, calories, protein, 
+      fat, cholesterol, carbohydrate, 
+      DT, na, remark)
+    values (#{id,jdbcType=INTEGER}, #{calories,jdbcType=DOUBLE}, #{protein,jdbcType=DOUBLE}, 
+      #{fat,jdbcType=DOUBLE}, #{cholesterol,jdbcType=DOUBLE}, #{carbohydrate,jdbcType=DOUBLE}, 
+      #{dt,jdbcType=DOUBLE}, #{na,jdbcType=DOUBLE}, #{remark,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.group1.carecenter.entity.Menu" >
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="calories != null" >
+        calories,
+      </if>
+      <if test="protein != null" >
+        protein,
+      </if>
+      <if test="fat != null" >
+        fat,
+      </if>
+      <if test="cholesterol != null" >
+        cholesterol,
+      </if>
+      <if test="carbohydrate != null" >
+        carbohydrate,
+      </if>
+      <if test="dt != null" >
+        DT,
+      </if>
+      <if test="na != null" >
+        na,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="calories != null" >
+        #{calories,jdbcType=DOUBLE},
+      </if>
+      <if test="protein != null" >
+        #{protein,jdbcType=DOUBLE},
+      </if>
+      <if test="fat != null" >
+        #{fat,jdbcType=DOUBLE},
+      </if>
+      <if test="cholesterol != null" >
+        #{cholesterol,jdbcType=DOUBLE},
+      </if>
+      <if test="carbohydrate != null" >
+        #{carbohydrate,jdbcType=DOUBLE},
+      </if>
+      <if test="dt != null" >
+        #{dt,jdbcType=DOUBLE},
+      </if>
+      <if test="na != null" >
+        #{na,jdbcType=DOUBLE},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.group1.carecenter.entity.Menu" >
+    update menu
+    <set >
+      <if test="calories != null" >
+        calories = #{calories,jdbcType=DOUBLE},
+      </if>
+      <if test="protein != null" >
+        protein = #{protein,jdbcType=DOUBLE},
+      </if>
+      <if test="fat != null" >
+        fat = #{fat,jdbcType=DOUBLE},
+      </if>
+      <if test="cholesterol != null" >
+        cholesterol = #{cholesterol,jdbcType=DOUBLE},
+      </if>
+      <if test="carbohydrate != null" >
+        carbohydrate = #{carbohydrate,jdbcType=DOUBLE},
+      </if>
+      <if test="dt != null" >
+        DT = #{dt,jdbcType=DOUBLE},
+      </if>
+      <if test="na != null" >
+        na = #{na,jdbcType=DOUBLE},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.group1.carecenter.entity.Menu" >
+    update menu
+    set calories = #{calories,jdbcType=DOUBLE},
+      protein = #{protein,jdbcType=DOUBLE},
+      fat = #{fat,jdbcType=DOUBLE},
+      cholesterol = #{cholesterol,jdbcType=DOUBLE},
+      carbohydrate = #{carbohydrate,jdbcType=DOUBLE},
+      DT = #{dt,jdbcType=DOUBLE},
+      na = #{na,jdbcType=DOUBLE},
+      remark = #{remark,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.group1.carecenter.mapper.HealthMapper" >
+  <resultMap id="BaseResultMap" type="com.group1.carecenter.entity.Health" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="clientid" property="clientid" jdbcType="INTEGER" />
+    <result column="bloodglucose" property="bloodglucose" jdbcType="VARCHAR" />
+    <result column="bloodfat" property="bloodfat" jdbcType="VARCHAR" />
+    <result column="bloodpressure" property="bloodpressure" jdbcType="VARCHAR" />
+    <result column="bloodroutine" property="bloodroutine" jdbcType="VARCHAR" />
+    <result column="urineroutine" property="urineroutine" jdbcType="VARCHAR" />
+    <result column="BMD" property="bmd" jdbcType="VARCHAR" />
+    <result column="ECG" property="ecg" jdbcType="VARCHAR" />
+    <result column="eyeground" property="eyeground" jdbcType="VARCHAR" />
+    <result column="liverfunction" property="liverfunction" jdbcType="VARCHAR" />
+    <result column="renalfunction" property="renalfunction" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="examdate" property="examdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, clientid, bloodglucose, bloodfat, bloodpressure, bloodroutine, urineroutine, 
+    BMD, ECG, eyeground, liverfunction, renalfunction, remark, examdate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from healthexam
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from healthexam
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.group1.carecenter.entity.Health" >
+    insert into healthexam (id, clientid, bloodglucose, 
+      bloodfat, bloodpressure, bloodroutine, 
+      urineroutine, BMD, ECG, 
+      eyeground, liverfunction, renalfunction, 
+      remark, examdate)
+    values (#{id,jdbcType=INTEGER}, #{clientid,jdbcType=INTEGER}, #{bloodglucose,jdbcType=VARCHAR}, 
+      #{bloodfat,jdbcType=VARCHAR}, #{bloodpressure,jdbcType=VARCHAR}, #{bloodroutine,jdbcType=VARCHAR}, 
+      #{urineroutine,jdbcType=VARCHAR}, #{bmd,jdbcType=VARCHAR}, #{ecg,jdbcType=VARCHAR}, 
+      #{eyeground,jdbcType=VARCHAR}, #{liverfunction,jdbcType=VARCHAR}, #{renalfunction,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{examdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.group1.carecenter.entity.Health" >
+    insert into healthexam
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="clientid != null" >
+        clientid,
+      </if>
+      <if test="bloodglucose != null" >
+        bloodglucose,
+      </if>
+      <if test="bloodfat != null" >
+        bloodfat,
+      </if>
+      <if test="bloodpressure != null" >
+        bloodpressure,
+      </if>
+      <if test="bloodroutine != null" >
+        bloodroutine,
+      </if>
+      <if test="urineroutine != null" >
+        urineroutine,
+      </if>
+      <if test="bmd != null" >
+        BMD,
+      </if>
+      <if test="ecg != null" >
+        ECG,
+      </if>
+      <if test="eyeground != null" >
+        eyeground,
+      </if>
+      <if test="liverfunction != null" >
+        liverfunction,
+      </if>
+      <if test="renalfunction != null" >
+        renalfunction,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="examdate != null" >
+        examdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="clientid != null" >
+        #{clientid,jdbcType=INTEGER},
+      </if>
+      <if test="bloodglucose != null" >
+        #{bloodglucose,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodfat != null" >
+        #{bloodfat,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodpressure != null" >
+        #{bloodpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodroutine != null" >
+        #{bloodroutine,jdbcType=VARCHAR},
+      </if>
+      <if test="urineroutine != null" >
+        #{urineroutine,jdbcType=VARCHAR},
+      </if>
+      <if test="bmd != null" >
+        #{bmd,jdbcType=VARCHAR},
+      </if>
+      <if test="ecg != null" >
+        #{ecg,jdbcType=VARCHAR},
+      </if>
+      <if test="eyeground != null" >
+        #{eyeground,jdbcType=VARCHAR},
+      </if>
+      <if test="liverfunction != null" >
+        #{liverfunction,jdbcType=VARCHAR},
+      </if>
+      <if test="renalfunction != null" >
+        #{renalfunction,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="examdate != null" >
+        #{examdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.group1.carecenter.entity.Health" >
+    update healthexam
+    <set >
+      <if test="clientid != null" >
+        clientid = #{clientid,jdbcType=INTEGER},
+      </if>
+      <if test="bloodglucose != null" >
+        bloodglucose = #{bloodglucose,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodfat != null" >
+        bloodfat = #{bloodfat,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodpressure != null" >
+        bloodpressure = #{bloodpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodroutine != null" >
+        bloodroutine = #{bloodroutine,jdbcType=VARCHAR},
+      </if>
+      <if test="urineroutine != null" >
+        urineroutine = #{urineroutine,jdbcType=VARCHAR},
+      </if>
+      <if test="bmd != null" >
+        BMD = #{bmd,jdbcType=VARCHAR},
+      </if>
+      <if test="ecg != null" >
+        ECG = #{ecg,jdbcType=VARCHAR},
+      </if>
+      <if test="eyeground != null" >
+        eyeground = #{eyeground,jdbcType=VARCHAR},
+      </if>
+      <if test="liverfunction != null" >
+        liverfunction = #{liverfunction,jdbcType=VARCHAR},
+      </if>
+      <if test="renalfunction != null" >
+        renalfunction = #{renalfunction,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="examdate != null" >
+        examdate = #{examdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.group1.carecenter.entity.Health" >
+    update healthexam
+    set clientid = #{clientid,jdbcType=INTEGER},
+      bloodglucose = #{bloodglucose,jdbcType=VARCHAR},
+      bloodfat = #{bloodfat,jdbcType=VARCHAR},
+      bloodpressure = #{bloodpressure,jdbcType=VARCHAR},
+      bloodroutine = #{bloodroutine,jdbcType=VARCHAR},
+      urineroutine = #{urineroutine,jdbcType=VARCHAR},
+      BMD = #{bmd,jdbcType=VARCHAR},
+      ECG = #{ecg,jdbcType=VARCHAR},
+      eyeground = #{eyeground,jdbcType=VARCHAR},
+      liverfunction = #{liverfunction,jdbcType=VARCHAR},
+      renalfunction = #{renalfunction,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      examdate = #{examdate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.group1.carecenter.mapper.ClientinMapper" >
+  <resultMap id="BaseResultMap" type="com.group1.carecenter.entity.Clientin" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="bedid" property="bedid" jdbcType="INTEGER" />
+    <result column="clientid" property="clientid" jdbcType="INTEGER" />
+    <result column="nurseid" property="nurseid" jdbcType="INTEGER" />
+    <result column="timein" property="timein" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, bedid, clientid, nurseid, timein, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from clientin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from clientin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.group1.carecenter.entity.Clientin" >
+    insert into clientin (id, bedid, clientid, 
+      nurseid, timein, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{bedid,jdbcType=INTEGER}, #{clientid,jdbcType=INTEGER}, 
+      #{nurseid,jdbcType=INTEGER}, #{timein,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.group1.carecenter.entity.Clientin" >
+    insert into clientin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bedid != null" >
+        bedid,
+      </if>
+      <if test="clientid != null" >
+        clientid,
+      </if>
+      <if test="nurseid != null" >
+        nurseid,
+      </if>
+      <if test="timein != null" >
+        timein,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bedid != null" >
+        #{bedid,jdbcType=INTEGER},
+      </if>
+      <if test="clientid != null" >
+        #{clientid,jdbcType=INTEGER},
+      </if>
+      <if test="nurseid != null" >
+        #{nurseid,jdbcType=INTEGER},
+      </if>
+      <if test="timein != null" >
+        #{timein,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.group1.carecenter.entity.Clientin" >
+    update clientin
+    <set >
+      <if test="bedid != null" >
+        bedid = #{bedid,jdbcType=INTEGER},
+      </if>
+      <if test="clientid != null" >
+        clientid = #{clientid,jdbcType=INTEGER},
+      </if>
+      <if test="nurseid != null" >
+        nurseid = #{nurseid,jdbcType=INTEGER},
+      </if>
+      <if test="timein != null" >
+        timein = #{timein,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.group1.carecenter.entity.Clientin" >
+    update clientin
+    set bedid = #{bedid,jdbcType=INTEGER},
+      clientid = #{clientid,jdbcType=INTEGER},
+      nurseid = #{nurseid,jdbcType=INTEGER},
+      timein = #{timein,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
